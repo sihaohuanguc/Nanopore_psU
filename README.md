@@ -30,7 +30,7 @@ pandas: 0.24.2
 
 # Protocol
 ## 1. Base call
-You could base call the reads during sequencing.If so, this step is not necessary. If the data is not base called. Use the following command to do the base call.
+You could base call the reads during sequencing. If so, this step is not necessary. If the data is not base called. Use the following command to do the base call.
 ```bash
 guppy_basecaller --input_path fast5 \
                  --recursive \
