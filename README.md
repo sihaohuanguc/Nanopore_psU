@@ -22,6 +22,7 @@ pandas: 0.24.2
 Steps
 1.Base call
 You could base call the reads during sequencing.If so, this step is not necessary. If the data is not base called. Use the following command to do the base call.
+```bash
 guppy_basecaller --input_path fast5 \
                  --recursive \
                  --save_path fastq \
@@ -32,6 +33,7 @@ guppy_basecaller --input_path fast5 \
                  --min_qscore 7 \
                  --cpu_threads_per_caller 3 \
                  --num_callers 5
+```
 "Input_path" is the path of your raw data. "Save_path" is your output folder. "Flowcell" is the type of nanopore flowcell you use. "Kit" is the version of nanopore direct RNA sequencing kit you use. Customize "cpu_threads_per_caller" and "num_caller" according to the state of your own cluster. This step is computation intensive.
 
 2.Alignment and pile up
