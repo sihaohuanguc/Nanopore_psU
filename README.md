@@ -28,11 +28,12 @@ re: 2.2.1
 
 pandas: 0.24.2
 
-# Download and installation
-You could download the package to your cluster by the following command.
+# Download
+You could download the package to your cluster by the following command. There is no need to install.
 ```bash
-wget https://github.com/sihaohuanguc/Nanopore_psU.git  # this is wrong now!
+git clone https://github.com/sihaohuanguc/Nanopore_psU.git
 ```
+
 # Protocol
 ## 1. Base call
 You could base call the reads during sequencing. If so, this step is not necessary. If the data is not base called, use the following command to do the base call.

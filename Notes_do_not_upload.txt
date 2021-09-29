@@ -1,2 +1,0 @@
-python setup.py build # install the package
-python setup.py sdist # generate a package for download
