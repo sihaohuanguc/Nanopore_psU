@@ -1,0 +1,35 @@
+#!/usr/bin/python
+import argparse
+from codes.alignment import align
+from codes.remove_intron import re_in
+from codes.extract_features import ex_fe
+from codes.prediction import pred
+
+p=argparse.ArgumentParser(description="Just for fun. This line could be very long describing the package.")
+p.add_argument("Mode",type=str,help="Running mode.")
+p.add_argument("--input","-i",type=str,help="Your input file.")
+p.add_argument("--reference","-r",type=str,help="Your reference file.")
+
+# pr=p.add_argument_group("required arguments")
+# pr.add_argument("--mood","-m",required=True,help="Tell me you current mood!")
+args=p.parse_args()
+
+if args.Mode:
+    run_type=args.Mode
+    if run_type=="alignment":
+        if args.input and args.reference:
+            in_folder_name=args.input
+            ref_name=args.reference
+            align(in_folder_name,ref_name)
+        else:
+            print("Required argument(s) missing.")
+    elif run_type=="remove_intron":
+        re_in()
+    elif run_type=="extract_features":
+        ex_fe()
+    elif run_type=="prediction":
+        pred()
+    else:
+        print("Input mode wrong.")
+
+

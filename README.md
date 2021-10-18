@@ -1,9 +1,8 @@
 # Description
-
-This protocol is used for psU prediction of nanopore RNA direct sequencing data.
+This protocol is used for pseudouridine (psU, Ψ) prediction of nanopore RNA direct sequencing data. There is no minimum input reads requirement but a raw dataset of >1M reads is recommended for the following processing for human transcriptome. For a larger transcriptome, more reads are recommended.
 
 This protocol is tested on a cluster of linux system ("midway2", Scientific Linux 7.2).
-# Requirements
+# Package versions
 The version of softwares and packages for testing codes:
 
 Python2: 2.7.5
@@ -33,6 +32,10 @@ You could download the package to your cluster by the following command. There i
 ```bash
 git clone https://github.com/sihaohuanguc/Nanopore_psU.git
 ```
+# Reference and citation
+If you would like to use this package in your work, please cite the following paper:
+
+(Placeholder)
 
 # Protocol
 ## 1. Base call
