@@ -2,7 +2,6 @@
 # -*- coding: utf-8
 
 import os
-import sys
 
 __author__ = "Sihao Huang"
 __copyright__ = ""
@@ -14,7 +13,7 @@ __email__ = "sihaohuang1024@gmail.com"
 __status__ = "Development"
 
 def align(in_folder_name,ref_name):
-    working_path=sys.path[0]
+    working_path=os.getcwd()
     in_folder=working_path+"/"+in_folder_name
     ref_fa=working_path+"/"+ref_name
     temp_folder=working_path+"/temp"
@@ -91,7 +90,11 @@ def align(in_folder_name,ref_name):
                                 for k in out_line:
                                     out_f1.write(k+"\n")
                                     
-    os.system("rm -r "+temp_folder)      
+    os.system("rm -r "+temp_folder)
+    if os.path.getsize(out_file)==0:
+        os.system("rm -r "+out_sub_folder)
+    if os.path.getsize(out_file1)==0:
+        os.system("rm -r "+out_sub_folder1) 
 
     with open(ref_fa,"r") as f:
         all_ref=[]

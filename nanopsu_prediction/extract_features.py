@@ -1,12 +1,11 @@
 import os
-import sys
 import csv
 import re
 import numpy
 from collections import Counter
 
 def ex_fe():
-    working_path=sys.path[0]
+    working_path=os.getcwd()
     in_folder=working_path+"/alignment"
     out_file=in_folder+"/features.csv"
 

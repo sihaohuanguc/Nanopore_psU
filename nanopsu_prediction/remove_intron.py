@@ -1,9 +1,8 @@
 import os
-import sys
 import re
 
 def re_in():
-    working_path=sys.path[0]
+    working_path=os.getcwd()
     in_folder=working_path+"/alignment"
 
     for item in os.listdir(in_folder):
