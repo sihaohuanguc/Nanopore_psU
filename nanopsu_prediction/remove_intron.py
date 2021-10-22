@@ -1,5 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8
+
 import os
 import re
+
+__author__ = "Sihao Huang"
+__copyright__ = ""
+__credits__ = []
+__license__ = "GPL 3.0"
+__version__ = "1.0"
+__maintainer__ = "Sihao Huang"
+__email__ = "sihaohuang1024@gmail.com"
+__status__ = "Development"
 
 def re_in():
     working_path=os.getcwd()

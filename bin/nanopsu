@@ -1,9 +1,19 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+# -*- coding: utf-8
 import argparse
 from nanopsu_prediction.alignment import align
 from nanopsu_prediction.remove_intron import re_in
 from nanopsu_prediction.extract_features import ex_fe
 from nanopsu_prediction.prediction import pred
+
+__author__ = "Sihao Huang"
+__copyright__ = ""
+__credits__ = []
+__license__ = "GPL 3.0"
+__version__ = "1.0"
+__maintainer__ = "Sihao Huang"
+__email__ = "sihaohuang1024@gmail.com"
+__status__ = "Development"
 
 p=argparse.ArgumentParser(description="This package is used to identify the pseudouridine sites from Nanopore RNA direct sequencing data.")
 p.add_argument("Mode",type=str,help="Running mode. Should be one from 'alignment', 'remove_intron', 'extract_features' and 'prediction'.")

@@ -1,9 +1,22 @@
+#!/usr/bin/env python
+# -*- coding: utf-8
+
 import os
 import sys
 import numpy
 import pandas as pd
 import pickle
+from pandas.core.frame import DataFrame
 from sklearn.ensemble import ExtraTreesClassifier
+
+__author__ = "Sihao Huang"
+__copyright__ = ""
+__credits__ = []
+__license__ = "GPL 3.0"
+__version__ = "1.0"
+__maintainer__ = "Sihao Huang"
+__email__ = "sihaohuang1024@gmail.com"
+__status__ = "Development"
 
 def pred():
     working_path=os.getcwd()
@@ -41,8 +54,9 @@ def pred():
     for i in range(len(ET1_predict_proba)):
         prob_unmodified.append(ET1_predict_proba[i][0])
         prob_modified.append(ET1_predict_proba[i][1])
-    site_info["prob_unmodified"]=prob_unmodified
-    site_info["prob_modified"]=prob_modified
+    site_dict={"prob_unmodified":prob_unmodified,"prob_modified":prob_modified}
+    site_info_part2=pd.DataFrame(site_dict)
+    site_info=pd.concat([site_info,site_info_part2],axis=1)
 
     site_info.to_csv(out_prediction_file,index=False,header=None)
 
