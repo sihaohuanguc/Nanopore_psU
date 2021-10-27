@@ -110,6 +110,6 @@ The output file is the `prediction.csv` in the `alignment` folder. Each row cont
 
 For the testing example, the `prediction.csv` is supposed to contain 176 lines. The distribution of psU probability of the 176 sites will look like the histogram below.
 
-![Picture1 - hist of test](https://github.com/sihaohuanguc/Nanopore_psU/blob/master/nanopsu_prediction/data/pic/1.png?raw=true)
+![Picture1 - hist of test](https://github.com/sihaohuanguc/Nanopore_psU/blob/master/nanopsu_prediction/data/pic/1.png?raw=true#pic_center)
 
 
