@@ -36,7 +36,11 @@ Then go to the folder with the `setup.py` file. And run
 ```bash
 pip install .
 ```
-Now you've installed the package. You could use it at any place of your account.
+Now you've installed the package. You could use it at any place of your account. If you are not clear about auy command, you could find help by the command
+```bash
+nanopsu -h
+```
+**Please follow the guidance and obey the rules of your cluster, when running the commands.**
 
 # Reference and citation
 If you would like to use this package in your work, please cite the following paper:
@@ -45,7 +49,7 @@ If you would like to use this package in your work, please cite the following pa
 
 # Protocol
 ## 1. Base call
-You could base call the reads during sequencing. If so, this step is not necessary. If the data is not base called, use the following command to do the base call.
+You could base call the reads during sequencing. If so, this step is not necessary and go to the next step directly. If the data is not base called, use the following command to do the base call.
 ```bash
 guppy_basecaller --input_path fast5 \
                  --recursive \
@@ -61,13 +65,14 @@ guppy_basecaller --input_path fast5 \
 "Input_path" is the path of your raw data. "Save_path" is your output folder. "Flowcell" is the type of nanopore flowcell you use. "Kit" is the version of nanopore direct RNA sequencing kit you use. Customize "cpu_threads_per_caller" and "num_caller" according to the state of your own cluster. This step is computation intensive.
 
 ## 2. Alignment and pile up
+To align the reads to the reference and pile up the reads, run the following command
 ```bash
-python alignment.py fastq/pass/ GRCh38.p13.genome.fa
+nanopsu alignment -i path/of/fastq/ -r reference.fa
 ```
 The first argument is the input fastq path. The fastq files must be directly in this folder. The second argument is the genome reference file.
-The output is a folder "alignment" with two subfolders. The two subfolders contains data of reads aligned to forward and reverse strands respectively. This step is computation intensive.
+The output is a folder `alignment` with two subfolders `plus_strand` and `minus_strand`. The two subfolders contains data of reads aligned to forward and reverse strands respectively. This step is computation intensive, which means it's NOT recommended to run the step on the login node of a cluster or on a local computer.
 
-If you would like to test the package on your device. Please copy the `example` folder, which contains 200 reads of human 18S rRNA and its reference sequence, to a folder you like and go to that folder. Then run the following command.
+If you would like to test the package on your device. Please copy the `example` folder, which contains 200 reads of human 18S rRNA and its reference sequence, to a folder you like and go to that folder. Then run the following command. (The process of the testing example is not computation intensive and could be run on any device.)
 ```bash
 nanopsu alignment -i example/fastq -r example/reference.fa
 ```
@@ -80,7 +85,7 @@ collect.fastq  collect.sam       reference.fa
 Of course, you could use the `.bam` file or the `_pile.txt` file for analysis by other softwares if you want. Here in this example there is no `minus_strand` folder as all the RNA reads are aligned to the forward strand of the reference. If you align your transcriptome sample to the genome reference, then you'll likely to have both `plus_strand` and `minus_strand` folder.
 
 ## 3. Feature extraction
-Due to the design of samtools. In the mpileup files, the spliced reads will be filled a ">" or "<" in the jumped regions and the coverage and the quality score are affected. The data points with ">" or "<" are not real bases. Run the following script to remove the gap sections in the mpileup file. This step is computation intensive.
+Due to the design of samtools, in the mpileup files, the spliced reads will be filled a ">" or "<" in the jumped regions and the coverage and the quality score are affected. The data points with ">" or "<" are not real bases. Run the following script to remove the gap sections in the mpileup file. This step is computation intensive.
 ```bash
 nanopsu remove_intron
 ```
@@ -88,7 +93,7 @@ In your `plus_strand` and `minus_strand` folders you'll find a new file named `c
 
 For the testing example, you'll find a file called `collect_pile_no_intron.txt` in the `plus_strand` folder.
 
-Then extract 12 features of all U sites. In order to make the prediction more reliable, there is a threshold for a U site which is 20 reads. Only U sites with >20 reads will be processed for following analysis. This step is computation intensive.
+Then extract features of all U sites. In order to make the prediction more reliable, there is a threshold for a U site which is 20 reads. Only U sites with >20 reads will be processed for following analysis. This step is computation intensive.
 ```bash
 nanopsu extract_features
 ```
@@ -103,6 +108,8 @@ nanopsu prediction
 ```
 The output file is the `prediction.csv` in the `alignment` folder. Each row contains the reference strand, position on the reference strand (sites on (-) strand have its index on (-) strand), base type, coverage, U probability and psU probability.
 
-For the testing example, the `prediction.csv` is supposed to contain 176 lines.
+For the testing example, the `prediction.csv` is supposed to contain 176 lines. The distribution of psU probability of the 176 sites will look like the histogram below.
+
+![Picture1 - hist of test](https://github.com/sihaohuanguc/test_package/blob/master/pic/pic1.png?raw=true)
 
 

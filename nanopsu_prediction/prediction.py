@@ -55,10 +55,12 @@ def pred():
         prob_unmodified.append(ET1_predict_proba[i][0])
         prob_modified.append(ET1_predict_proba[i][1])
     site_dict={"prob_unmodified":prob_unmodified,"prob_modified":prob_modified}
-    site_info_part2=pd.DataFrame(site_dict)
+    site_info_part2=pd.DataFrame(site_dict,columns=["prob_unmodified","prob_modified"])
+    print(site_info_part2)
     site_info=pd.concat([site_info,site_info_part2],axis=1)
+    print(site_info)
 
-    site_info.to_csv(out_prediction_file,index=False,header=None)
+    site_info.to_csv(out_prediction_file,index=False,header=True)
 
 
 
