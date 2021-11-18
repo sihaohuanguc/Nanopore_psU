@@ -1,3 +1,5 @@
+DOI: 10.5281/zenodo.5711328
+
 # Description
 This protocol is used for pseudouridine (psU, Ψ) site prediction of nanopore RNA direct sequencing data. There is no minimum input reads requirement but a raw dataset of >1M reads is recommended for the following processing for human transcriptome. For a larger transcriptome, more reads are recommended.
 
