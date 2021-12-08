@@ -45,7 +45,7 @@ nanopsu -h
 # Reference and citation
 If you would like to use this package in your work, please cite the following paper:
 
-(Placeholder)
+Huang, S., Zhang, W., Katanski, C.D. et al. Interferon inducible pseudouridine modification in human mRNA by quantitative nanopore profiling. Genome Biol 22, 330 (2021). https://doi.org/10.1186/s13059-021-02557-y
 
 # Protocol
 ## 1. Base call
